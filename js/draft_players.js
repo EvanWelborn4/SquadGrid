@@ -4,6 +4,22 @@ Date: 2/17/2025
 Description: This file will handle the draft recap minigame.
 */
 
+const resetButton = document.getElementById('resetButton');
+resetButton.addEventListener('click', resetGame);
+
+//Clear All Input Fields
+function resetGame() {
+    const allInputs = document.querySelectorAll('input');
+    allInputs.forEach(x => {
+        x.style.backgroundColor = 'white';
+        x.readOnly = false;
+        x.value = '';
+    });
+    const correctCounterItem = document.getElementById('correctCount');
+    correctCounterItem.innerHTML = 0;
+    endGame();
+}
+
 const firstPickInput = document.getElementById('firstPick');
 firstPickInput.addEventListener('click', correctFirstPick);
 
@@ -545,14 +561,9 @@ function correctThirtySecondPick() {
 }
 
 
-
-
-
-
-
 //Pop Up Alert if User gets everything right
 function endGame() {
-
+    const correctCounterItem = document.getElementById('correctCount');
     let correctAnswerCounter = 0;
     const allInputs = document.querySelectorAll('input');
     allInputs.forEach(x => {
@@ -561,10 +572,91 @@ function endGame() {
          } 
     });
 
+    correctCounterItem.innerHTML = correctAnswerCounter;
+
     if(correctAnswerCounter === 32) {
         setTimeout(() => {
             alert("Good Job!");
         }, 1000);
     }
-
 }
+
+//Fetch Data From API for Suggestion Box
+document.addEventListener('DOMContentLoaded', () => {
+    const inputs = document.querySelectorAll('input[type="text"]');
+
+    const suggestionBox = document.createElement('div');
+    suggestionBox.classList.add('suggestion-box');
+    document.body.appendChild(suggestionBox);
+
+    let playerNames = [];
+
+
+    // Fetch player data from the JSON file
+    fetch('../json/filteredPlayers.json')
+        .then(response => response.json())
+        .then(data => {
+             playerNames = data.map(player => player.name);
+        })  
+            
+        .catch(error => {
+            console.error('Error fetching player data:', error);
+        });
+
+        pickCount = 0;
+        
+        inputs.forEach(input => {
+        pickCount++;    
+        input.addEventListener('input', () => {
+            const inputValue = input.value.toLowerCase();
+            suggestionBox.innerHTML = ''; 
+
+            if (inputValue.length === 0) {
+                suggestionBox.style.display = 'none';
+                return;
+            }
+
+            const matches = playerNames.filter(name =>
+                name.toLowerCase().includes(inputValue)
+            );
+
+            if (matches.length === 0) {
+                suggestionBox.style.display = 'none';
+                return;
+            }
+
+            matches.forEach(name => {
+                const suggestion = document.createElement('div');
+                suggestion.textContent = name;
+                suggestion.classList.add('suggestion');
+                suggestion.addEventListener('click', () => {
+                    input.value = name;
+                    suggestionBox.style.display = 'none';
+
+                });
+                suggestionBox.appendChild(suggestion);
+            });
+
+            // Position the suggestion box under the input
+            const rect = input.getBoundingClientRect();
+            suggestionBox.style.left = `${rect.left + window.scrollX}px`;
+            suggestionBox.style.top = `${rect.bottom + window.scrollY}px`;
+            suggestionBox.style.width = `${rect.width}px`;
+            suggestionBox.style.display = 'block';
+        });
+
+        //Trigger the Suggestions
+        input.addEventListener('focus', () => {
+            if (input.value.length > 0) {
+                input.dispatchEvent(new Event('input'));
+            }
+        });
+
+        input.addEventListener('blur', () => {
+            setTimeout(() => {
+                suggestionBox.style.display = 'none';
+            }, 100); // Delay to allow click event to register
+        });
+
+    });
+});
