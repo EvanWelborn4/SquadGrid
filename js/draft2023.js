@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // Fetch player data from the JSON file
-    fetch('../json/filteredPlayers.json')
+    fetch('filteredPlayers.json')
         .then(response => response.json())
         .then(data => {
              playerNames = data.map(player => player.name);
