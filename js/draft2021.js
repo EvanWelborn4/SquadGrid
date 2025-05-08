@@ -1,50 +1,51 @@
 /*
 Created By : Evan Welborn
-Date Created : 04/17/2025
-Description : This file is used to create the draft 2023 page for SquadGrid.
+Date Created : 04/22/2025
+Description : This file is used to create the draft 2022 page for SquadGrid.
 It is an updated version of the draft_players.js file.
 It uses a new method to check the players and teams. It also has a suggestion box
-from the filteredPlayers.json file.
+from the filteredPlayers.json file. This is pretty much copy and pasted besides player list
 */
 
 //Make array of player, team, and pick
-const draft2023 = [
-    {pick: 1, team: "Panthers", player: "Bryce Young", playerLastName: "Young"},
-    {pick: 2, team: "Texans", player: "C.J. Stroud", playerLastName: "Stroud"},
-    {pick: 3, team: "Texans", player: "Will Anderson Jr.", playerLastName: "Anderson"},
-    {pick: 4, team: "Colts", player: "Anthony Richardson", playerLastName: "Richardson"},
-    {pick: 5, team: "Seahawks", player: "Devon Witherspoon", playerLastName: "Witherspoon"},
-    {pick: 6, team: "Cardinals", player: "Paris Johnson Jr.", playerLastName: "Johnson"},
-    {pick: 7, team: "Raiders", player: "Tyree Wilson", playerLastName: "Wilson"},
-    {pick: 8, team: "Falcons", player: "Bijan Robinson", playerLastName: "Robinson"},
-    {pick: 9, team: "Eagles", player: "Jalen Carter", playerLastName: "Carter"},
-    {pick: 10, team: "Bears", player: "Darnell Wright", playerLastName: "Wright"},
-    {pick: 11, team: "Titans", player: "Peter Skoronski", playerLastName: "Skoronski"},
-    {pick: 12, team: "Lions", player: "Gibbs", playerLastName: "Gibbs"},
-    {pick: 13, team: "Packers", player: "Lucas Van Ness", playerLastName: "Van Ness"},
-    {pick: 14, team: "Steekers", player: "Broderick Jones", playerLastName: "Jones"},
-    {pick: 15, team: "Jets", player: "Will McDonald IV", playerLastName: "McDonald"},
-    {pick: 16, team: "Commanders", player: "Emmanuel Forbes", playerLastName: "Forbes"},
-    {pick: 17, team: "Patriots", player: "Christian Gonzalez", playerLastName: "Gonzalez"},
-    {pick: 18, team: "Lions", player: "Jack Campbell", playerLastName: "Campbell"},
-    {pick: 19, team: "Buccaneers", player: "Calijah Kancey", playerLastName: "Kancey"},
-    {pick: 20, team: "Seahawks", player: "Jaxon Smith-Njigba", playerLastName: "Smith-Njigba", playerNickName: "JSN"},
-    {pick: 21, team: "Chargers", player: "Quentin Johnston", playerLastName: "Johnston"},
-    {pick: 22, team: "Ravens", player: "Zay Flowers", playerLastName: "Flowers"},
-    {pick: 23, team: "Vikings", player: "Jordan Addison", playerLastName: "Addison"},
-    {pick: 24, team: "Giants", player: "Deonte Banks", playerLastName: "Banks"},
-    {pick: 25, team: "Bills", player: "Dalton Kincaid", playerLastName: "Kincaid"},
-    {pick: 26, team: "Cowboys", player: "Mozzie Smith", playerLastName: "Smith"},
-    {pick: 27, team: "Jaguars", player: "Anton Harrison", playerLastName: "Harrison"},
-    {pick: 28, team: "Bengals", player: "Miles Murphy", playerLastName: "Murphy"},
-    {pick: 29, team: "Saints", player: "Bryan Bresee", playerLastName: "Bresee"},
-    {pick: 30, team: "Eagles", player: "Nolan Smith", playerLastName: "Smith"},
-    {pick: 31, team: "Chiefs", player: "Felix Anudike-Uzomah", playerLastName: "Anudike-Uzomah"},
-]
+const draft2021 = [
+    {pick: 1, team: "Jaguars", player: "Trevor Lawrence", playerLastName: "Lawrence"},
+    {pick: 2, team: "Jets", player: "Zach Wilson", playerLastName: "Wilson"},
+    {pick: 3, team: "49ers", player: "Trey Lance", playerLastName: "Lance"},
+    {pick: 4, team: "Falcons", player: "Kyle Pitts", playerLastName: "Pitts"},
+    {pick: 5, team: "Bengals", player: "Ja'marr Chase", playerLastName: "Chase"},
+    {pick: 6, team: "Dolphins", player: "Jaylen Waddle", playerLastName: "Waddle"},
+    {pick: 7, team: "Lions", player: "Penei Sewell", playerLastName: "Sewell"},
+    {pick: 8, team: "Panthers", player: "Jaycee Horn", playerLastName: "Horn"},
+    {pick: 9, team: "Broncos", player: "Pat Surtain II", playerLastName: "Surtain"},
+    {pick: 10, team: "Eagles", player: "Devonta Smith", playerLastName: "Smith"},
+    {pick: 11, team: "Bears", player: "Justin Fields", playerLastName: "Fields"},
+    {pick: 12, team: "Cowgirls", player: "Micah Parsons", playerLastName: "Parsons"},
+    {pick: 13, team: "Chargers", player: "Rashawn Slater", playerLastName: "Slater"},
+    {pick: 14, team: "Jets", player: "Alijah Vera-Tucker", playerLastName: "Vera-Tucker"},
+    {pick: 15, team: "Patriots", player: "Mac Jones", playerLastName: "Jones"},
+    {pick: 16, team: "Cardinals", player: "Zaven Collins", playerLastName: "Collins"},
+    {pick: 17, team: "Raiders", player: "Alex Leatherwood", playerLastName: "Leatherwood"},
+    {pick: 18, team: "Dolphins", player: "Jaelan Phillips", playerLastName: "Phillips"},
+    {pick: 19, team: "Commanders", player: "Jamin Davis", playerLastName: "Davis"},
+    {pick: 20, team: "Giants", player: "Kadarius Toney", playerLastName: "Toney"},
+    {pick: 21, team: "Colts", player: "Kwity Paye", playerLastName: "Paye"},
+    {pick: 22, team: "Titans", player: "Caleb Farley", playerLastName: "Farley"},
+    {pick: 23, team: "Vikings", player: "Christian Darrisaw", playerLastName: "Darrisaw"},
+    {pick: 24, team: "Steelers", player: "Najee Harris", playerLastName: "Harris"},
+    {pick: 25, team: "Jaguars", player: "Travis Etienne", playerLastName: "Etienne"},
+    {pick: 26, team: "Browns", player: "Greg Newsome II", playerLastName: "Newsome"},
+    {pick: 27, team:"Ravens", player: "Rashod Bateman", playerLastName: "Bateman"},
+    {pick: 28, team: "Aints", player: "Payton Turner", playerLastName: "Turner"},
+    {pick: 29, team: "Packers", player: "Eric Stokes", playerLastName: "Stokes"},
+    {pick: 30, team: "Bills", player: "Greg Rousseau", playerLastName: "Rousseau"},
+    {pick: 31, team: "Ravens", player: "Odafe Oweh", playerLastName: "Oweh"},
+    {pick: 32, team: "Bucs", player: "Joe Tryon-Shoyinka", playerLastName: "Tryon-Shoyinka"},    
+];
 
 //Function To Match Button To Certain Pick
 window.onload = function () {
-    for (let i = 0; i < draft2023.length; i++) {
+    for (let i = 0; i < draft2021.length; i++) {
        const pickNumber = i + 1; 
        const button = document.getElementById(`check${pickNumber}`);
        if(button) {
@@ -64,13 +65,13 @@ function checkPick(pickNumber) {
     }
 
     const userInput = input.value.trim().toLowerCase();
-    const correctPlayer = draft2023[pickNumber - 1].player.toLowerCase();
-    const correctPlayerLastName = draft2023[pickNumber - 1].playerLastName.toLowerCase();
+    const correctPlayer = draft2021[pickNumber - 1].player.toLowerCase();
+    const correctPlayerLastName = draft2021[pickNumber - 1].playerLastName.toLowerCase();
 
     if(userInput === correctPlayer || userInput === correctPlayerLastName) {
         input.style.backgroundColor = "green";
         input.readOnly = true;
-        input.value = draft2023[pickNumber - 1].player;
+        input.value = draft2021[pickNumber - 1].player;
         endGame();
     } else {
         input.style.backgroundColor = "red";
@@ -207,7 +208,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }, 100);
         });
-
     });
 });
 

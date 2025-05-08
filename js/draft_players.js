@@ -139,7 +139,7 @@ function correctEightthPick() {
     const searchElement = document.getElementById('player8');
     const searchValue = searchElement.value;
        
-    if(searchValue.toLowerCase() === 'Michael Penix Jr'.toLowerCase() || searchValue.toLowerCase() === 'penix jr'.toLowerCase() || searchValue.toLowerCase() === 'Penix'.toLowerCase()){
+    if(searchValue.toLowerCase() === 'Michael Penix Jr'.toLowerCase() || searchValue.toLowerCase() === 'penix jr'.toLowerCase() || searchValue.toLowerCase() === 'Penix'.toLowerCase() || searchValue.toLowerCase() === 'Michael Penix Jr.'.toLowerCase()){
         searchElement.style.backgroundColor = 'green';
         searchElement.readOnly = true;
         searchElement.value = 'Michael Penix Jr';
@@ -652,10 +652,22 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        let isClickingSuggestion = false;
+
+        suggestionBox.addEventListener('mousedown', () => {
+            isClickingSuggestion = true;
+        });
+        
+        suggestionBox.addEventListener('mouseup', () => {
+            isClickingSuggestion = false;
+        });
+        
         input.addEventListener('blur', () => {
             setTimeout(() => {
-                suggestionBox.style.display = 'none';
-            }, 100); // Delay to allow click event to register
+                if (!isClickingSuggestion) {
+                    suggestionBox.style.display = 'none';
+                }
+            }, 100);
         });
 
     });
